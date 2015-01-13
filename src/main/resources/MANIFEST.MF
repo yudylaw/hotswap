@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Can-Redefine-Classes: true
+Agent-Class: com.yudylaw.hotswap.demo.HotSwapAgent
+Premain-Class: com.yudylaw.hotswap.demo.HotSwapAgent
+
