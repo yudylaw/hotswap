@@ -1,5 +1,8 @@
 package com.yudylaw.hotswap.demo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.instrument.Instrumentation;
 
 /**
@@ -9,6 +12,8 @@ import java.lang.instrument.Instrumentation;
 
 public class HotSwapAgent {
 
+    private final static Logger logger = LoggerFactory.getLogger(HotSwapAgent.class);
+    
     /**
      * hotswap before jvm start
      * 实现字节码替换，限制小，可以添加方法等
@@ -27,9 +32,12 @@ public class HotSwapAgent {
      * @param inst
      */
     public static void agentmain(String agentArgs, Instrumentation inst) {
+        logger.info("enter agentmain");
         if(!inst.isRedefineClassesSupported()){
+            logger.info("redefine class not supported");
             throw new UnsupportedOperationException("redefine class not supported.");
         }
+        AgentMain.hotswap(agentArgs, inst);
     }
     
 }
